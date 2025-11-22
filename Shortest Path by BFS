@@ -1,35 +1,35 @@
 from collections import deque
 
 def add_edge(graph, u, v, bidirectional=True):
+
     if u not in graph:
         graph[u] = []
     if v not in graph:
         graph[v] = []
-    
+
     graph[u].append(v)
     if bidirectional:
         graph[v].append(u)
 
-
 def bfs_shortest_path(graph, start, goal):
+
     if start not in graph or goal not in graph:
         print("Start or goal node not in graph.")
         return None
 
     queue = deque()
     visited = set()
-    parent = {}  # to reconstruct path
+    parent = {}
 
     queue.append(start)
     visited.add(start)
-    parent[start] = None  # start has no parent
+    parent[start] = None
 
     while queue:
         current = queue.popleft()
 
-        # Goal check
-        if current == goal:
-            # Reconstruct path from goal to start using parent dictionary
+        if current ==goal:
+
             path = []
             node = goal
             while node is not None:
@@ -37,20 +37,19 @@ def bfs_shortest_path(graph, start, goal):
                 node = parent[node]
             path.reverse()
             return path
-        
+
         for neighbor in graph[current]:
             if neighbor not in visited:
                 visited.add(neighbor)
                 parent[neighbor] = current
                 queue.append(neighbor)
 
-
+    return None
 
 def main():
     print("=== Shortest Path Finder using BFS ===")
     graph = {}
 
-    # Take graph input from user
     n_edges = int(input("Enter number of edges: ").strip())
     print("Enter edges in the format: u v")
     print("Example: A B  (meaning edge between A and B)")
@@ -73,8 +72,7 @@ def main():
     else:
         print("\nShortest path found using BFS:")
         print(" -> ".join(path))
-        print(f"Number of steps: {len(path) - 1}")
+        print(f"Number of steps: {size(path) - 1}")
 
-
-if __name__ == "__main__":
+if __name__ =="__main__":
     main()
