@@ -1,7 +1,6 @@
 from collections import deque
 
 def add_edge(graph, u, v, bidirectional=True):
-    """Add an edge to the graph. If bidirectional=True, add both u->v and v->u."""
     if u not in graph:
         graph[u] = []
     if v not in graph:
@@ -13,10 +12,6 @@ def add_edge(graph, u, v, bidirectional=True):
 
 
 def bfs_shortest_path(graph, start, goal):
-    """
-    Perform BFS to find the shortest path in an unweighted graph.
-    Returns the path as a list of nodes, or None if no path exists.
-    """
     if start not in graph or goal not in graph:
         print("Start or goal node not in graph.")
         return None
@@ -43,15 +38,12 @@ def bfs_shortest_path(graph, start, goal):
             path.reverse()
             return path
         
-        # Explore neighbors
         for neighbor in graph[current]:
             if neighbor not in visited:
                 visited.add(neighbor)
                 parent[neighbor] = current
                 queue.append(neighbor)
 
-    # If we exhaust the queue and never find the goal
-    return None
 
 
 def main():
