@@ -72,7 +72,7 @@ def main():
     else:
         print("\nShortest path found using BFS:")
         print(" -> ".join(path))
-        print(f"Number of steps: {size(path) - 1}")
+        print(f"Number of steps: {len(path) - 1}")
 
 if __name__ =="__main__":
     main()
